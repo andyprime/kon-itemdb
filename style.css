@@ -1,0 +1,243 @@
+body {
+        margin: 0px;
+        padding: 0px;
+        font-family: Arial;
+}
+
+#banner {
+        height: 50px;
+        /*background-color: #6FA7FF;*/
+        background-color: #006699;
+        padding-top: 12px;
+        color: white;
+}
+
+#banner h1 {
+        margin-top: 0px;
+        margin-left: 20px;
+}
+
+#optionsbar {
+        background-color: #6FA7FF;
+}
+
+#optionsbar ul {
+        list-style-type: none;
+        margin: 0px;
+        height: 20px;
+        padding: 7px 10px;
+}
+
+#optionsbar li {
+        display: inline;
+        border: 1px solid #EFEFEF;
+        color: #EFEFEF;
+        background-color: #006699;
+        padding: 3px 5px;
+        cursor: pointer;
+        margin-right: 5px;
+        
+        border-radius: 5px;
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+}
+
+#suboptions {
+        /*background-color: #959D9F;*/
+        background-color: #C4D0D3;
+        padding: 3px 11px;
+}
+
+.tags {
+        font-size: 10pt;
+}
+
+.wee {
+        font-size: 10px;
+}
+
+#footer {
+        height: 20px;
+        background-color: #C4D0D3;
+}
+
+/* overlay-related css */
+#suggest {
+        text-decoration: underline;
+        cursor: pointer;
+        color: #006699;
+}
+
+#formerr {
+        font-size: 10px;
+        color: red;
+}
+
+.errorelement {
+        border: 1px solid red;
+}
+
+.overlay {
+        display:none;
+        z-index:10000;
+        
+        background-color: #fff;
+        width:675px;
+        min-height:200px;
+        
+        padding: 15px;
+        
+        border-radius: 5px;
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        border: 1px solid #800000;
+}
+
+.overlay .close {
+        background-image:url(img/close.png);
+        position:absolute;
+        right:-15px;
+        top:-15px;
+        cursor:pointer;
+        height:35px;
+        width:35px;
+}
+
+
+/* Main table CSS */
+#contentpane {
+        overflow-y: scroll;
+        position: relative;
+}
+
+#ruler {
+        height:  1px;
+        width: 100%;
+        background-color: red;
+        position: absolute;
+        top: 200px;
+}
+
+#item-table {
+        /*margin-left: 3px;
+        margin-right: 3px;*/
+        width: 100%;
+        background-color: white;
+}
+
+
+.page {
+        display: none;
+}
+
+
+
+
+
+#table-body td {
+        padding: 3px;
+}
+
+#table-body tr {
+        background-color: #CFE2FF;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.editbtn {
+        cursor: pointer;
+}
+
+.divcell {
+        width: 2px;
+        background-color: #FFFFFF;
+}
+
+
+.button {
+        cursor: pointer;
+}
+
+.detailbox {
+        margin-top: 2px;
+        margin-bottom: 2px;
+}
+
+textarea {
+        width: 300px;
+        height: 75px;
+}
+
+
+
+
+
+
+
+.magic_lt {
+        background-color: #CFE2FF;
+        }
+
+.magic_dk {
+        background-color: #6FA7FF;
+        }
+
+.treasure_lt {
+        background-color: #FEFF8F;
+        }
+
+.treasure_dk {
+        background-color: #FFFF33;
+        }
+
+.other_lt {
+        background-color: lightgrey;
+        }
+
+.other_dk {
+        background-color: #FFFFFF;
+        }
+
+.production_lt {
+        background-color: #FF9D4F;
+        }
+
+.production_dk {
+        background-color: #FF7200;
+        }
+
+.ritual_lt {
+        background-color: #FFDFEF;
+        }
+
+.ritual_dk {
+        background-color: #FF99CC;
+        }
+
+
+.errorbox {
+        background-color: #EF1D25;
+        margin-left: auto;
+        margin-right: auto;
+        width: 600px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        padding: 11px;
+        }
+
+input[type="button"], input[type="submit"], button {
+        border: 1px solid #006699;
+        }

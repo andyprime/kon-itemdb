@@ -1,0 +1,37 @@
+SELECT * FROM items , item_tags 
+WHERE 1 
+AND (description LIKE "%g%" OR notes LIKE "%g%") 
+AND items.item_id=item_tags.item_id 
+AND item_tags.name IN ("Magic Item", "Ring slot") 
+ORDER BY item_number LIMIT 100 
+
+
+
+
+
+SELECT * FROM items , item_tags 
+WHERE 1 
+AND items.item_id=item_tags.item_id 
+AND item_tags.name IN ("Magic Item", "Ring slot") 
+ORDER BY item_number LIMIT 100 
+
+
+
+
+
+SELECT DISTINCT items.* FROM items , item_tags 
+WHERE 1 
+AND (description LIKE "%g%" OR notes LIKE "%g%") 
+AND items.item_id=item_tags.item_id 
+AND item_tags.name IN ("Magic Item", "Ring slot") 
+ORDER BY item_number LIMIT 100 
+
+
+
+
+SELECT * FROM items , item_tags 
+WHERE 1 
+AND items.item_id=item_tags.item_id 
+AND item_tags.name IN ("Magic Item", "Ring slot") 
+GROUP BY items.item_id HAVING COUNT(*) = 2  
+ORDER BY item_number LIMIT 100 
