@@ -1,0 +1,12 @@
+{
+  "name": "kon-item-database",
+  "version": "0.1.0",
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-coffee": "0.7.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/andyprime/kon-itemdb.git"
+  }
+}
