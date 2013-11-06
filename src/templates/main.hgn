@@ -1,0 +1,21 @@
+<div class="banner">
+  <h1>KON Item Database</h1>
+</div>
+
+<ul class="options">
+  <li class="btn-list">List</li>
+  <li class="btn-add">Add</li>
+  <li class="btn-options">Options</li>
+  <li class="btn-export">Export</li>
+  <li class="btn-test">Test</li>
+</ul>
+
+{{! <div id="suboptions">
+    Text search: <input type="text" id="text_search" /> &nbsp;&nbsp;&nbsp;&nbsp; <span id="taglist"></span> <input type="button" id="clearsearch" value="Clear" />
+</div> }}
+
+<div class="content-pane"/>
+  
+
+{{! <div id="footer">
+</div> }}
