@@ -1,3 +1,23 @@
+// Variables
+
+@darkBlue: #006699;
+@lightBlue: #6FA7FF;
+@offWhite: #EFEFEF;
+@lightGrey: #E0E0E0;
+
+@altBlue: #094872;
+
+// Mixins
+.rounded-corners (@radius: 3px) {
+  -webkit-border-radius: @radius;
+  -moz-border-radius: @radius;
+  -ms-border-radius: @radius;
+  -o-border-radius: @radius;
+  border-radius: @radius;
+}
+
+
+
 body {
   margin: 0px;
   padding: 0px;
@@ -6,7 +26,7 @@ body {
 
 .banner {
   height: 50px;
-  background-color: #006699;
+  background-color: @altBlue;
   padding-top: 12px;
   color: white;
 
@@ -19,8 +39,7 @@ body {
 
 
 .options {
-  background-color: #6FA7FF;
-
+  background-color: @lightBlue;
   
   list-style-type: none;
   margin: 0px;
@@ -29,24 +48,62 @@ body {
 
   li {
     display: inline;
-    border: 1px solid #EFEFEF;
-    color: #EFEFEF;
-    background-color: #006699;
-    padding: 3px 5px;
+    // border: 1px solid @altBlue;
+    color: @altBlue;
+    background-color: @lightGrey;
+    padding: 4px 8px;
     cursor: pointer;
     margin-right: 5px;
+    font-size: 14px;
+    text-align: center;
+    line-height: 1.4;
+    font-weight: bold;
+
+    i {
+      margin-right: 6px;
+    }
           
-    border-radius: 3px;
-    -moz-border-radius: 3px;
-    -webkit-border-radius: 3px;
+    .rounded-corners(4px);
   }
 }
 
-#suboptions {
-  /*background-color: #959D9F;*/
-  background-color: #C4D0D3;
-  padding: 3px 11px;
+.content-pane {
+  overflow-y: scroll;
+  position: relative;
 }
+
+
+.list-pane {
+
+  ul {
+    list-style-type: none;
+    margin: 0px 10px;
+    padding: 0px 5px;
+
+    li {
+      display: block;
+      border: 1px solid @darkBlue;
+      padding: 5px 10px;
+      margin: 10px 0px;
+
+      .rounded-corners(10px);
+    }
+  }
+}
+
+.sub-options {
+  background-color: @lightGrey;
+  padding: 5px 10px;
+  color: @altBlue;
+}
+
+
+
+
+
+
+
+
 
 .tags {
   font-size: 10pt;
@@ -107,10 +164,7 @@ body {
 
 
 /* Main table CSS */
-.contentpane {
-  overflow-y: scroll;
-  position: relative;
-}
+
 
 #ruler {
   height:  1px;

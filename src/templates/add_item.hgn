@@ -1,0 +1,20 @@
+
+
+
+<div>
+  Item # <input/>
+</div>
+
+<div>
+  Value <input/>
+</div>
+
+<div>
+  Public description
+  <textarea></textarea>
+</div>
+
+<div>
+  Private description
+  <textarea></textarea>
+</div>

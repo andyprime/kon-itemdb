@@ -1,4 +1,1 @@
-<table cellspacing="0">
-  {{! <tr id="wait_row"><td colspan="9" align="center"><br /><br /><img src="img/indicator_medium.gif" /></td></tr> }}
-  <tbody></tbody>
-</table>
+<ul/>
