@@ -7,7 +7,7 @@ $tags = array();
 foreach ($db->record as $t) {
         $tags[] = $t['name'];
 }
-$req = $tags;
+$resp = $tags;
 
 
 

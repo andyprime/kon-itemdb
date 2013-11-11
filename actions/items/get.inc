@@ -6,7 +6,7 @@ $db->query($query, SQL_ALL);
 
 $items = $db->record;
 
-$req = array();
+$resp = array();
 
 foreach($items as $item) {
     $query = 'SELECT * FROM item_tags WHERE item_id="' . $item['item_id'] . '" ';
@@ -17,7 +17,7 @@ foreach($items as $item) {
     }
     $item['tags'] = $tags;
     $item['has_tags'] = count($tags) > 0;
-    $req[] = $item;
+    $resp[] = $item;
 }
 
 ?>

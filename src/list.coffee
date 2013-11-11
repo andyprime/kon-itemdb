@@ -3,9 +3,9 @@ class ListView extends Backbone.View
   className: 'list-pane'
 
   initialize: =>
-    @items = new Items()
-    @items.fetch()
-    @items.bind 'add', @appendItem
+    console.log(@)
+    @collection.fetch()
+    @collection.bind 'add', @appendItem
 
     @render()
 

@@ -9,34 +9,33 @@ $bits = split('/', $uri);
 if ($bits[count($bits)] == '') {
     unset($bits[count($bits)]);
 }
-$index = array_search('server', $bits);
-$path = array_slice($bits, $index + 1);
+
+// $index = array_search('server', $bits);
+// $path = array_slice($bits, $index + 1);
+
+$model = $bits[3];
+$id = $bits[4];
 
 $method = strtolower($_SERVER['REQUEST_METHOD']);
 
-header('Cache-Control: no-cache, must-revalidate');
-header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
-header('Content-type: application/json');
-
-include('actions/' . implode('/', $path) . '/' . $method . '.inc');
-
-echo json_encode($req);
 
 
-function pp($arr){
-    $retStr = '<ul>';
-    if (is_array($arr)){
-        foreach ($arr as $key=>$val){
-            if (is_array($val)){
-                $retStr .= '<li>' . $key . ' => ' . pp($val) . '</li>';
-            }else{
-                $retStr .= '<li>' . $key . ' => ' . $val . '</li>';
-            }
-        }
-    }
-    $retStr .= '</ul>';
-    return $retStr;
+$data = json_decode(file_get_contents('php://input'));
+$resp = array();
+include('actions/' . $model . '/' . $method . '.inc');
+
+if($err) {
+  header('HTTP/1.1 400 Bad Request', true, 400);
+  echo $err;
+} else {
+  header('Cache-Control: no-cache, must-revalidate');
+  header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
+  header('Content-type: application/json');
+
+  echo json_encode($resp);
 }
+
+
 /*
 
 if ($_REQUEST['action'] != '') {

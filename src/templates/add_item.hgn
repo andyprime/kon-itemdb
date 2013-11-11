@@ -1,20 +1,28 @@
 
 
-
+<form>
 <div>
-  Item # <input/>
+  Item # <input name="item_number" />
 </div>
 
 <div>
-  Value <input/>
+  Value <input name="value" />
+</div>
+
+<div>
+  Added by <input name="added_by" />
 </div>
 
 <div>
   Public description
-  <textarea></textarea>
+  <textarea name="description"></textarea>
 </div>
 
 <div>
   Private description
-  <textarea></textarea>
+  <textarea name="notes"></textarea>
 </div>
+
+<button>Save</button>
+</form>
+

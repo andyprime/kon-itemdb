@@ -10,12 +10,5 @@
   <li class="btn-test"><i class="fa fa-question"/>Test</li>
 </ul>
 
-{{! <div id="suboptions">
-    Text search: <input type="text" id="text_search" /> &nbsp;&nbsp;&nbsp;&nbsp; <span id="taglist"></span> <input type="button" id="clearsearch" value="Clear" />
-</div> }}
 <div class="sub-options"/>
 <div class="content-pane"/>
-  
-
-{{! <div id="footer">
-</div> }}

@@ -1,7 +1,7 @@
 class Items extends Backbone.Collection
     
-    model: Item,
-    url: 'server/items/',
+    model: Item
+    url: 'server/items/'
     
     initialize: ->
     
