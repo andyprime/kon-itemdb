@@ -4,4 +4,3 @@ class Item extends Backbone.Model
   validate: (attr, options) ->
     unless attr.item_number?
       return "Must at least have an item number"
-    return

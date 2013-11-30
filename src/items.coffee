@@ -6,8 +6,8 @@ class Items extends Backbone.Collection
     initialize: ->
     
     addOne: (item) ->
-        view = new CommentView({model: item});
-        $(@el).append(view.render().el);
+      view = new CommentView({model: item});
+      $(@el).append(view.render().el);
     
     addAll: ->
       @collection.each(this.addOne);

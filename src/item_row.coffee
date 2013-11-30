@@ -1,8 +1,13 @@
 class ItemRowView extends Backbone.View
-  tagName: 'li',
+  tagName: 'table',
   
+  # className: 'clearfix'
+
   initialize: =>
     @render()
   
   render: ->
-    @$el.html(templates['item_row'].render({item: @model.toJSON()}))  
+    item = @model.toJSON()
+    @$el.html templates['item_row'].render
+      item: item
+      hasValue: item.value > 0

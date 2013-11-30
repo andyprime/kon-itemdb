@@ -3,17 +3,15 @@ class ListView extends Backbone.View
   className: 'list-pane'
 
   initialize: =>
-    console.log(@)
     @collection.fetch()
-    @collection.bind 'add', @appendItem
+    @listenTo @collection, 'add', @appendItem
 
     @render()
 
   render: ->
-    @$el.html(templates.list.render())
     @
 
-
   appendItem: (item, items) =>
+    console.log('append item')
     controller = new ItemRowView({model: item})
-    @$('ul').append(controller.el)
+    @$el.append(controller.el)

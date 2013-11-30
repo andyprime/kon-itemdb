@@ -13,7 +13,6 @@ $db->query($query, SQL_ALL);
 if (count($db->record) > 0) {
   $err = 'That item number already exists.';
 }
-  
 
 if (!$err) {
 
@@ -27,8 +26,8 @@ if (!$err) {
   
   $db->query($query, SQL_NONE);
 
-  echo $query . "\n";
-  echo $db->error . "\n";
+  // echo $query . "\n";
+  // echo $db->error . "\n";
 
   if ($db->error) {
     $err = 'A database error occured. Uh oh.';
@@ -36,7 +35,7 @@ if (!$err) {
     $err .= $query . "\n\n";
     $err .= $db->error;
   } else {
-    $resp[] = 'OK';
+    $resp['message'] = 'OK';
     // $query = 'DELETE FROM item_tags WHERE item_id="' . $item_id . '" ';
     // $db->query($query, SQL_NONE);
 

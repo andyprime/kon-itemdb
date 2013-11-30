@@ -1,19 +1,23 @@
-<span>
-  {{item.item_number}}
-</span>
-  
-<span>
-  {{item.description}}
-</span>
-    
-<span>
-  {{item.value}}
-</span>
+<tr>
+  <td class="item-number">
+    {{item.item_number}}
+  </td>
 
-{{#item.has_tags}}
-  <br /><span class="tags">Tags:
-    {{#item.tags}}
-      <a href="#" class="taglink" special="abc">{{.}}</a>,
-    {{/item.tags}}
-  </span>
-{{/item.has_tags}}
+  {{#hasValue}}
+  <td class="value">
+    <i class="fa fa-money"/> {{item.value}}
+  </td>
+  {{/hasValue}}
+
+  <td class="main">
+    {{item.description}}
+
+    {{#item.has_tags}}
+      <br /><span class="tags">Tags:
+        {{#item.tags}}
+          <a href="#" class="taglink" special="abc">{{.}}</a>,
+        {{/item.tags}}
+      </span>
+    {{/item.has_tags}}
+  </td>
+</tr>

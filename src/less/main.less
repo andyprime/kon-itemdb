@@ -75,20 +75,40 @@ body {
 
 .list-pane {
 
-  ul {
-    list-style-type: none;
-    margin: 0px 10px;
-    padding: 0px 5px;
+  table {
+    margin: 8px 30px;
+    border: 1px solid @darkBlue;
+    width: 90%;
+    min-height: 2em;
+    border-spacing: 0;
 
-    li {
-      display: block;
-      border: 1px solid @darkBlue;
-      padding: 5px 10px;
-      margin: 10px 0px;
+    .item-number {
+      text-align: right;
+      font-size: 20px;
+      font-weight: bold;
+      color: white;
+      background-color: @darkBlue;
 
-      .rounded-corners(10px);
+      padding: 0 8px;
+      width: 2.5em;
+
+      cursor: pointer;
     }
+
+    .main {
+      padding: 5px 10px;
+    }
+
+    .value {
+      width: 2.5em;
+
+      i {
+        color: green;
+      }
+    }
+
   }
+
 }
 
 .sub-options {
@@ -99,7 +119,19 @@ body {
 
 
 
-
+.clearfix:after {
+     visibility: hidden;
+     display: block;
+     font-size: 0;
+     content: " ";
+     clear: both;
+     height: 0;
+     }
+.clearfix { display: inline-block; }
+/* start commented backslash hack \*/
+* html .clearfix { height: 1%; }
+.clearfix { display: block; }
+/* close commented backslash hack */
 
 
 

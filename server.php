@@ -10,23 +10,21 @@ if ($bits[count($bits)] == '') {
     unset($bits[count($bits)]);
 }
 
-// $index = array_search('server', $bits);
-// $path = array_slice($bits, $index + 1);
-
 $model = $bits[3];
 $id = $bits[4];
 
 $method = strtolower($_SERVER['REQUEST_METHOD']);
-
-
 
 $data = json_decode(file_get_contents('php://input'));
 $resp = array();
 include('actions/' . $model . '/' . $method . '.inc');
 
 if($err) {
+  header('Content-type: application/json');
   header('HTTP/1.1 400 Bad Request', true, 400);
-  echo $err;
+  $resp = array()
+  $resp['msg'] = $err;
+  echo json_encode($resp);
 } else {
   header('Cache-Control: no-cache, must-revalidate');
   header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');

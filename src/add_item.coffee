@@ -4,7 +4,6 @@ class AddItemView extends Backbone.View
     'submit form': 'saveItem'
 
   initialize: =>
-    console.log('add iten', @collection)
     @render()
 
   render: ->
@@ -21,13 +20,16 @@ class AddItemView extends Backbone.View
       description: @_getValue('description')
       notes: @_getValue('notes')
 
-    console.log('data', data)
-
-    x = @collection.create(data)
-
-    console.log('thingy', x)
-
+    @collection.create data, 
+      wait: true
+      error: @saveFail
+      success: @saveSuccess
     
+  saveSuccess: (model, response, options) =>
+    console.log('It worked, yo', response)
+
+  saveFail: (model, xhr, options) =>
+    console.log('Shit broke yo', xhr.responseJSON)
 
   _getValue: (name) ->
     raw = @$("[name=\"#{name}\"]").val()
