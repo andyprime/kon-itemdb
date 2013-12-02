@@ -5,7 +5,6 @@ class MainView extends Backbone.View
   events:
     'click .options li': 'pageSelect'
 
-
   subPages:
     'list': ListView
     'add': AddItemView
@@ -18,7 +17,8 @@ class MainView extends Backbone.View
     @items = new Items()
 
     for id, view of @subPages
-      @subPages[id] = new view({collection: @items})
+      @subPages[id] = new view({collection: @items}, @subOptions[id])
+      @listenTo(@subPages[id], 'navigate', @nav)
 
     # doing this with @listenTo cuases one of those mysterious "object has no method apply" errors
     $(window).on('resize', @resize)
@@ -38,8 +38,14 @@ class MainView extends Backbone.View
   pageSelect: (event) =>
     page = $(event.target).attr('page')
     if page?
+      @nav(page)
+
+  nav: (page) =>
+    if page?
       @selectedPage = page
       @render()
+    else
+      throw 'Cannot navigate to blank page'
 
   resize: ->
     # note that this gets the viewport height

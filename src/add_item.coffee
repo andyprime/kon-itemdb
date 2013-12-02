@@ -1,5 +1,7 @@
 class AddItemView extends Backbone.View
 
+  className: 'add-item'
+
   events:
     'submit form': 'saveItem'
 
@@ -12,6 +14,7 @@ class AddItemView extends Backbone.View
 
   saveItem: (e) =>
     e.preventDefault()
+    @clearForm()
 
     data = 
       item_number: @_getValue('item_number')
@@ -26,10 +29,18 @@ class AddItemView extends Backbone.View
       success: @saveSuccess
     
   saveSuccess: (model, response, options) =>
-    console.log('It worked, yo', response)
+    @trigger('navigate', 'list')
 
   saveFail: (model, xhr, options) =>
-    console.log('Shit broke yo', xhr.responseJSON)
+    @setForm(xhr.responseJSON.msg)
+
+  setForm: (message) ->
+    @$('.form-message').html(message)
+    @$('.form-message').show()
+
+  clearForm: ->
+    @$('.form-message').html('')
+    @$('.form-message').hide()
 
   _getValue: (name) ->
     raw = @$("[name=\"#{name}\"]").val()

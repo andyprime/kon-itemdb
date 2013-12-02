@@ -8,7 +8,7 @@ module.exports = (grunt) ->
         bare: true
       compile: 
         files:
-          'js/compiled.js': 'src/*.coffee'
+          'js/compiled.js': ['src/*.coffee', 'src/models/*.coffee']
 
     hogan:
       mytarget:

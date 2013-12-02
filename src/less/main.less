@@ -4,6 +4,7 @@
 @lightBlue: #6FA7FF;
 @offWhite: #EFEFEF;
 @lightGrey: #E0E0E0;
+@medGrey: #CCC;
 
 @altBlue: #094872;
 
@@ -16,6 +17,32 @@
   border-radius: @radius;
 }
 
+.inner-shadow (@color: @lightBlue) {
+  -moz-box-shadow: inset 0 1px 1px @color;
+  -webkit-box-shadow: inset 0 1px 1px @color;
+  -box-shadow: inset 0 1px 1px @color;
+}
+
+
+// *, *:before, *:after {
+//   -webkit-box-sizing: border-box;
+//   -moz-box-sizing: border-box;
+//   box-sizing: border-box;
+// }
+
+.clearfix:after {
+     visibility: hidden;
+     display: block;
+     font-size: 0;
+     content: " ";
+     clear: both;
+     height: 0;
+     }
+.clearfix { display: inline-block; }
+/* start commented backslash hack \*/
+* html .clearfix { height: 1%; }
+.clearfix { display: block; }
+/* close commented backslash hack */
 
 
 body {
@@ -119,215 +146,65 @@ body {
 
 
 
-.clearfix:after {
-     visibility: hidden;
-     display: block;
-     font-size: 0;
-     content: " ";
-     clear: both;
-     height: 0;
-     }
-.clearfix { display: inline-block; }
-/* start commented backslash hack \*/
-* html .clearfix { height: 1%; }
-.clearfix { display: block; }
-/* close commented backslash hack */
 
-
-
-
-
-.tags {
-  font-size: 10pt;
-}
-
-.wee {
-  font-size: 10px;
-}
-
-#footer {
-  height: 20px;
-  background-color: #C4D0D3;
-}
-
-/* overlay-related css */
-#suggest {
-  text-decoration: underline;
-  cursor: pointer;
-  color: #006699;
-}
-
-#formerr {
-  font-size: 10px;
-  color: red;
-}
-
-.errorelement {
-  border: 1px solid red;
-}
-
-.overlay {
-  display:none;
-  z-index:10000;
+.form-message {
+  background-color: #fdf7f7;
+  border: 1px solid #eed3d7;
+  color: #b94a48;
+  padding: 5px 12px;
   
-  background-color: #fff;
-  width:675px;
-  min-height:200px;
-  
-  padding: 15px;
-  
-  border-radius: 5px;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  border: 1px solid #800000;
-
-  .close {
-    background-image:url(img/close.png);
-    position:absolute;
-    right:-15px;
-    top:-15px;
-    cursor:pointer;
-    height:35px;
-    width:35px;
-  }
-}
-
-
-
-
-/* Main table CSS */
-
-
-#ruler {
-  height:  1px;
-  width: 100%;
-  background-color: red;
-  position: absolute;
-  top: 200px;
-}
-
-#item-table {
-  /*margin-left: 3px;
-  margin-right: 3px;*/
-  width: 100%;
-  background-color: white;
-}
-
-
-.page {
-  display: none;
-}
-
-
-
-
-
-#table-body {
-  td {
-    padding: 3px;
-  }
-
-  tr {
-    background-color: #CFE2FF;
-  }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.editbtn {
-  cursor: pointer;
-}
-
-.divcell {
-  width: 2px;
-  background-color: #FFFFFF;
-}
-
-
-.button {
-  cursor: pointer;
-}
-
-.detailbox {
-  margin-top: 2px;
-  margin-bottom: 2px;
-}
-
-textarea {
-  width: 300px;
-  height: 75px;
-}
-
-
-
-
-
-
-
-.magic_lt {
-  background-color: #CFE2FF;
-}
-
-.magic_dk {
-  background-color: #6FA7FF;
-}
-
-.treasure_lt {
-  background-color: #FEFF8F;
-}
-
-.treasure_dk {
-  background-color: #FFFF33;
-}
-
-.other_lt {
-  background-color: lightgrey;
-}
-
-.other_dk {
-  background-color: #FFFFFF;
-}
-
-.production_lt {
-  background-color: #FF9D4F;
-}
-
-.production_dk {
-  background-color: #FF7200;
-}
-
-.ritual_lt {
-  background-color: #FFDFEF;
-}
-
-.ritual_dk {
-  background-color: #FF99CC;
-}
-
-
-.errorbox {
-  background-color: #EF1D25;
-  margin-left: auto;
-  margin-right: auto;
-  width: 600px;
-  margin-top: 10px;
   margin-bottom: 10px;
-  padding: 11px;
+
+  width: 80%;
+
+  display: none;
+
 }
 
-input[type="button"], input[type="submit"], button {
-  border: 1px solid #006699;
+
+
+.form-group {
+  margin-bottom: 10px;
+  display: block;
+
+  label {
+    display: inline-block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+
+  textarea {
+    width: 80%;
+  }
+
+  input {
+    width: 200px;
+  }
+
+  input,textarea {
+    display: block;
+    padding: 2px 4px;
+    border: 1px solid @medGrey;
+  }  
+  button {
+    font-weight: bold;
+  }
+     
+}
+
+.add-item {
+  h2 {
+    margin: 15px 50px;
+  }
+
+  .item-form {
+    margin: 0 50px;
+    border-width: 1px 1px 1px 5px;
+    border-style: solid;
+    border-color: @darkBlue;
+    padding: 10px;
+    width: 80%;
+    min-width: 600px;
+    max-width: 900px;
+  }
 }

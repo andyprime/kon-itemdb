@@ -22,7 +22,7 @@ include('actions/' . $model . '/' . $method . '.inc');
 if($err) {
   header('Content-type: application/json');
   header('HTTP/1.1 400 Bad Request', true, 400);
-  $resp = array()
+  $resp = array();
   $resp['msg'] = $err;
   echo json_encode($resp);
 } else {

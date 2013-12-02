@@ -15,7 +15,7 @@
     {{#item.has_tags}}
       <br /><span class="tags">Tags:
         {{#item.tags}}
-          <a href="#" class="taglink" special="abc">{{.}}</a>,
+          <a href="#" class="taglink">{{.}}</a>,
         {{/item.tags}}
       </span>
     {{/item.has_tags}}
