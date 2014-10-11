@@ -5,7 +5,12 @@
 
   <div class="form-group">
     <label for="item_number">Item #</label>
-    <input name="item_number" /> <i class="number-find-btn fa fa-search" />
+    <div class="easy-row">
+      <input name="item_number" />
+      <i class="number-find-btn fa fa-search" title="Find first available" />
+      <div class="clearfix" />
+    </div>
+
   </div>
 
   <div class="form-group">
@@ -29,7 +34,7 @@
   </div>
 
   <div class="form-group">
-    <button><i class="fa fa-save"/> Save</button>
+    <button class="add-item-btn"><i class="fa fa-save"/> Save</button>
   </div>
 </form>
 

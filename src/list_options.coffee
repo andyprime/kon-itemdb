@@ -4,6 +4,7 @@ class ListOptionsView extends Backbone.View
 
   events:
     'keyup input[name="text-search"]': 'doSearch'
+    'click .delete-tag-btn': 'deleteTag'
 
   initialize: =>
     @listenTo Backbone, 'select_tag', @addTag
@@ -16,12 +17,23 @@ class ListOptionsView extends Backbone.View
 
   doSearch: =>
     text = @_getValue('text-search')
-    @trigger 'search', 
-      text: text
-      tags: @tags
+    options = {}
+    options.text = text if text isnt ''
+    options.tags = @tags if @tags.length > 0
+
+    @trigger 'search', options      
 
   addTag: (tag) =>
     @tags.push(tag)
+    @$('.tag-box').append(templates['selected_tag'].render(tagName: tag))
+    @doSearch()
+
+  deleteTag: (e) =>
+    e.preventDefault()
+    target = $(e.target)
+    tag = target.attr('data-tag')
+    @tags = _.without(@tags, tag)
+    target.parent().remove()
     @doSearch()
 
   _getValue: (name) ->

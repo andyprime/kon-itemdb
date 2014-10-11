@@ -1,3 +1,11 @@
-<i class="fa fa-lg fa-chevron-right"/>
+<div class="section">
+  <i class="fa fa-lg fa-chevron-right"/>
+  <input name="text-search"/> 
+</div>
 
-<input name="text-search"/>
+<div class="section">
+  <span>Filter by:</span>
+  <ul class="tag-box" />
+</div>
+
+<div class="clearfix" />

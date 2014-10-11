@@ -3,7 +3,7 @@ class ItemRowView extends Backbone.View
   
   events:
     'click .taglink': 'selectTag'
-
+    
   initialize: =>
     @render()
   

@@ -1,0 +1,1 @@
+<li>{{tagName}} <i class="fa fa-minus-circle delete-tag-btn" data-tag="{{tagName}}" /></li>

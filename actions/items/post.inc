@@ -10,6 +10,11 @@ $notes = $data->notes;
   
 $query = 'SELECT * FROM items WHERE item_number="' . $item_no . '" ';
 $db->query($query, SQL_ALL);
+
+if ($item_no < 1) {
+  $err = 'Bad item number.';
+}
+
 if (count($db->record) > 0) {
   $err = 'That item number already exists.';
 }
@@ -36,19 +41,13 @@ if (!$err) {
     $err .= $db->error;
   } else {
     $resp['message'] = 'OK';
-    // $query = 'DELETE FROM item_tags WHERE item_id="' . $item_id . '" ';
-    // $db->query($query, SQL_NONE);
-
-    // if ($tags) {
-    //   $taglist = explode(',', $tags);
-    //   foreach ($taglist as $tag) {
-    //     $query = 'INSERT INTO item_tags SET item_id="' . $item_id . '", name="' . trim($tag) . '" ';
-    //     $db->query($query, SQL_NONE);
-    //   }
-    // }
+    $resp['pizza'] = 'ham';
+    
+    // return the new data, as backbone will take the server response as authoritative
+    $query = 'SELECT * FROM items WHERE item_number="' . $item_no . '" ';
+    $db->query($query, SQL_ALL);
+    $resp = $db->record[0];
   }
 
-
 }
-
 ?>
