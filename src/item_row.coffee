@@ -3,6 +3,7 @@ class ItemRowView extends Backbone.View
   
   events:
     'click .taglink': 'selectTag'
+    'click .item-number': 'itemDetails'
     
   initialize: =>
     @render()
@@ -16,3 +17,7 @@ class ItemRowView extends Backbone.View
   selectTag: (e) =>
     e.preventDefault()
     Backbone.trigger('select_tag', e.target.innerHTML)
+
+  itemDetails: (e) =>
+    e.preventDefault
+    @trigger('details', @model.get('item_number'))

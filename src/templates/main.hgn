@@ -9,6 +9,4 @@
   <li class="btn-export"><i class="fa fa-floppy-o"/>Export</li>
   <li class="btn-test"><i class="fa fa-question"/>Test</li>
 </ul>
-
-<div class="sub-options"/>
 <div class="content-pane"/>

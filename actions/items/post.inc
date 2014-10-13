@@ -40,9 +40,6 @@ if (!$err) {
     $err .= $query . "\n\n";
     $err .= $db->error;
   } else {
-    $resp['message'] = 'OK';
-    $resp['pizza'] = 'ham';
-    
     // return the new data, as backbone will take the server response as authoritative
     $query = 'SELECT * FROM items WHERE item_number="' . $item_no . '" ';
     $db->query($query, SQL_ALL);

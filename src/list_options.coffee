@@ -1,6 +1,6 @@
 class ListOptionsView extends Backbone.View
 
-  className: 'search-pane'
+  # className: 'search-pane'
 
   events:
     'keyup input[name="text-search"]': 'doSearch'
@@ -9,7 +9,6 @@ class ListOptionsView extends Backbone.View
   initialize: =>
     @listenTo Backbone, 'select_tag', @addTag
     @tags = []
-    @render()
 
   render: ->
     @$el.html(templates['list_options'].render())

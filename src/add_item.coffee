@@ -6,8 +6,8 @@ class AddItemView extends Backbone.View
     'submit form': 'saveItem'
     'click .number-find-btn': 'findNumber'
 
-  initialize: =>
-    @render()
+  # initialize: =>
+    # @render()
 
   render: ->
     @$el.html(templates['add_item'].render())
@@ -64,4 +64,8 @@ class AddItemView extends Backbone.View
     console.log('Done', i)
     @$('input[name="item_number"]').val(i)
 
-    
+  hide: ->
+    @$el.hide()
+
+  show: ->
+    @$el.show()
