@@ -1,8 +1,10 @@
 class Item extends Backbone.Model
-  initialize: (attributes, options) ->
-    # console.log('const', attributes)
-    # console.log(options)
-    super
+  idAttribute: 'item_id'
+
+  # initialize: (attributes, options) ->
+  #   # console.log('const', attributes)
+  #   # console.log(options)
+  #   super
 
   validate: (attr, options) ->
     unless attr.item_number?

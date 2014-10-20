@@ -4,6 +4,9 @@ class ListView extends Backbone.View
 
   initialize: (options, sub) =>
     @searchController = new ListOptionsView()
+    @editView = new EditItemView()
+    @listenTo(@editView, 'close', @offDetail)
+
     @rows = []
     
     @listenTo @searchController, 'search', @performSearch
@@ -12,6 +15,7 @@ class ListView extends Backbone.View
   render: =>
     @$el.html(templates.list.render())
     @searchController.setElement(@$('.search-options')).render()
+    @editView.setElement(@$('.item-detail')).render().hide()
     @
 
   renderRows: =>
@@ -62,7 +66,16 @@ class ListView extends Backbone.View
     @$el.hide()
 
   show: ->
+    @offDetail()
     @$el.show()
 
-  onDetail: (id) ->
-    console.log('Yay!', id)
+  onDetail: (id) =>
+    @$('.item-list').hide()
+
+    
+    item = @collection.find (x) -> x.get('item_number') is id
+    @editView.loadItem(item).show()
+
+  offDetail: =>
+    @editView.hide()
+    @$('.item-list').show()

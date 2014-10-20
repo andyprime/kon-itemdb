@@ -1,6 +1,6 @@
 <?php
-require_once('lib/db.php');
-require_once('inc/instance.inc');
+require_once('rest/lib/db.php');
+require_once('rest/inc/instance.inc');
 
 $db = $GLOBALS['db'] = new dbConnect($GLOBALS['instance']['app_name'], $GLOBALS['instance']['database']);
 
@@ -17,7 +17,7 @@ $method = strtolower($_SERVER['REQUEST_METHOD']);
 
 $data = json_decode(file_get_contents('php://input'));
 $resp = array();
-include('actions/' . $model . '/' . $method . '.inc');
+include('rest/actions/' . $model . '/' . $method . '.inc');
 
 if($err) {
   header('Content-type: application/json');

@@ -1,0 +1,16 @@
+<html>
+<head>
+<title>Novitas Item Manager</title>
+<link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="stylesheet" type="text/css" href="themes/alphacube.css" />
+<link rel="stylesheet" type="text/css" href="/shared/windows_js/themes/default.css" />
+<script type="text/javascript" src="/shared/prototype/prototype.js"> </script>
+<script type="text/javascript" src="/shared/scriptaculous/scriptaculous.js"> </script>
+<script type="text/javascript" src="/shared/windows_js/javascripts/window.js"> </script>
+
+<script type="text/javascript" src="items.js"> </script>
+</head>
+<body>
+<div id="banner">
+<h1>KON Item Database</h1>
+</div>

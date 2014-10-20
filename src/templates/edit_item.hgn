@@ -1,0 +1,32 @@
+<div class="edit-item">
+  <h2>Item #{{item.item_number}}</h2>
+  <form class="item-form">
+    <div class="form-message"/>
+
+    <div class="form-group">
+      <label for="value">Value</label>
+      <input name="value" value="{{item.value}}" />
+    </div>
+
+    <div class="form-group">
+      <label for="added_by">Added by</label>
+      <input name="added_by" value="{{item.added_by}}" />
+    </div>
+
+    <div class="form-group">
+      <label for="description">Public description</label>
+      <textarea name="description">{{item.description}}</textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="notes">Private description</label>
+      <textarea name="notes">{{item.notes}}</textarea>
+    </div>
+
+    <div class="form-group">
+      <button type="submit" class="edit-item-btn"><i class="fa fa-save"/> Save</button>
+
+      <button type="button" class="cancel-btn"><i class="fa fa-close" /> Cancel</button>
+    </div>
+  </form>
+</div>
