@@ -11,17 +11,30 @@
   <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.6/build/pure-min.css" integrity="sha384-Uu6IeWbM+gzNVXJcM9XV3SohHtmWE+3VGi496jvgX1jyvDTXfdK+rfZc8C1Aehk5" crossorigin="anonymous">
   <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/base-min.css">
 
+  <link rel="stylesheet" href="items.css">
+
     
 </head>
 
 <body>
 
-  KON Item DB
-
+  <header><h1>KON Item DB 2.0</h1></header>
   <div id="app">
-    <item v-for="item in items" v-bind:key="item.item_id" v-bind:item="item"></item>
-
+    <div id="control-panel" class="pure-menu pure-menu-horizontal pure-menu-fixed">
+      <ul class="pure-menu-list">
+        <li class="pure-menu-item">
+          <a href="#" class="pure-menu-link">New Item</a>
+        </li>
+        <li class="pure-menu-item">
+          <a href="#" class="pure-menu-link">Export</a>
+        </li>
+      </ul>
+    </div>
+    <div id="item-bucket">
+      <item class="item-row" v-for="item in items" v-bind:key="item.item_id" v-bind:item="item"></item>
+    </div>
   </div>
+  
   
 </body>
 

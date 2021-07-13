@@ -1,4 +1,4 @@
-<?
+<?php
 
 $item_no = $data->item_number;
 $value = $data->value;

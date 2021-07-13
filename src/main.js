@@ -1,6 +1,19 @@
 itemstorage = {
-    fetch: function () {
-        return [{item_id: '1', thing: 'ok'}];
+    fetch: function(updateMe) {
+        fetch('/server/items/')
+            .then(function(response) {
+                return response.json();
+                
+            })
+            // you need another layer here because response is also a promise
+            .then(function(data) {
+                updateMe.items = data;
+            });
+
+    },
+
+    fetchTest: function () {
+        return [{item_id: '1', description: 'ok'}, {item_id: 2, description: 'honky tonk'}];
     }
 }
 
@@ -10,8 +23,9 @@ Vue.component('item', {
     data: function() {return {};},
     template: `
         <div class="pure-g">
-            <div class="pure-u-2-5">{{item.item_id}}</div>
-            <div class="pure-u-3-5">B</div>
+            <div class="pure-u-1-5">{{item.item_number}}</div>
+            <div class="pure-u-3-5">{{item.description}}</div>
+            <div class="pure-u-1-5">{{item.value}}</div>
         </div>`
 });
 
@@ -21,7 +35,7 @@ var vm = new Vue({
         items: []
     },
     mounted: function() {
-        this.items = itemstorage.fetch()
+        this.items = itemstorage.fetch(this)
     }
 });
 

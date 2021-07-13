@@ -1,0 +1,30 @@
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+header h1 {
+    margin: 0;
+    padding: 0.6em 0.5em 2em 0.5em;
+    background: white;
+}
+
+#item-bucket {
+    margin-top: 8em;
+    display: inline-block;
+    width: 100%;
+}
+
+#control-panel {
+    top: 5em;
+}
+
+a:hover {
+    color: #3578e5;
+}
+
+.item-row {
+    padding: .2em 0;
+}
