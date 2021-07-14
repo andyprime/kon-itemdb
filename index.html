@@ -20,19 +20,16 @@
 
   <header><h1>KON Item DB 2.0</h1></header>
   <div id="app">
-    <div id="control-panel" class="pure-menu pure-menu-horizontal pure-menu-fixed">
-      <ul class="pure-menu-list">
-        <li class="pure-menu-item">
-          <a href="#" class="pure-menu-link">New Item</a>
-        </li>
-        <li class="pure-menu-item">
-          <a href="#" class="pure-menu-link">Export</a>
-        </li>
-      </ul>
+    <control-panel v-on:change-page="changePage"></control-panel>
+    
+    <div id="content-bucket">
+      <work-form v-if="current_page == 'work'" v-on:change-page="changePage" v-bind:target="target"></work-form>      
+
+      <div id="item-bucket" v-if="current_page == 'items'" >
+        <item class="item-row" v-for="item in items" v-bind:key="item.item_id" v-bind:item="item" v-on:edit-item="editItem"></item>
+      </div>
     </div>
-    <div id="item-bucket">
-      <item class="item-row" v-for="item in items" v-bind:key="item.item_id" v-bind:item="item"></item>
-    </div>
+
   </div>
   
   
