@@ -16,11 +16,14 @@ if ($bits[count($bits)] == '') {
 }
 
 $model = $bits[2];
-$id = $bits[3];
+$id = intval($bits[3]);
 
 $method = strtolower($_SERVER['REQUEST_METHOD']);
 
-$data = json_decode(file_get_contents('php://input'));
+if ($method == 'post' || $method == 'put') {
+  $data = json_decode(file_get_contents('php://input'));
+}
+
 $resp = array();
 include('rest/actions/' . $model . '/' . $method . '.inc');
 

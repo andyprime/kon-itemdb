@@ -8,7 +8,6 @@ ItemModel = {
             })
             // you need another layer here because response is also a promise
             .then(function(data) {
-                // updateMe.items = data;
                 data.forEach(item => ItemModel.allRecords[item.item_id] = item);
             });
     },
@@ -18,7 +17,34 @@ ItemModel = {
     },
 
     find: function(id) {
-        return ItemModel.allRecords[id];
+        // by default we want to return a shallow copy so components (the edit form mainly) can't change the original
+        // via form bindings
+        return Object.assign({}, ItemModel.allRecords[id]);
+    },
+
+    create: function(workingItem) {
+
+    },
+
+    update: function(workingItem) {
+
+        itemJson = JSON.stringify(workingItem);
+        // url = '/server/items/' + workingItem.item_id;
+        url = '/server/items/ham';
+        return fetch(url, {method: 'PUT', body: itemJson})
+            .then(function(response) {
+                if (!response.ok) {
+                    // we don't have access to the error message here, so we can't specify :\
+                    // It might be worthwhile to make a wrapper for fetch that rejects on 404s so you can get the body
+                    // but adding client-side validation might realistically cover all expected problems
+                    return Promise.reject('Something went wrong');
+                }
+                return response.json();
+            })
+            .then(function(data) {
+                // on success the PUT end point returns the item post change, so get that new shit into the records
+                ItemModel.allRecords[data.item_id] = data;
+            });
     }
 }
 
@@ -71,6 +97,20 @@ Vue.component('work-form', {
         doASubmit: function() {
             console.log(this.workingItem.item_id);
             console.log('Oh yeah!', this.workingItem);
+
+            if (this.workingItem.item_id) {
+                // edit
+
+                ItemModel.update(this.workingItem).then(function() {
+                    this.$emit('change-page', 'items');
+                }.bind(this))
+                .catch(function(error, other) {
+                    alert('Something really unexpected happened and your request may not have been saved. Sorry.');
+                });
+
+            } else {
+                // new item
+            }
 
         },
         doACancel: function() {
@@ -141,13 +181,15 @@ var vm = new Vue({
         changePage: function(page) {
             this.target = 0;
             this.current_page = page;
+            // if we're coming back from the edit/create for we need to refresh the local list
+            this.setData();
         },
         editItem: function(item_id) {
             this.changePage('work');
             this.target = item_id;            
         },
         setData: function() {
-            // free context bind if this lives in methods
+            // the model contains all items, so to support searching we need a seperate list here that's just which ones to show at any given time
             all = ItemModel.all();
             all.sort(function(a,b) { return a['item_number'] - b['item_number']});
             this.items = all;
