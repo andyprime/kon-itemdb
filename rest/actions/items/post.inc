@@ -1,21 +1,25 @@
 <?php
 
-$item_no = $data->item_number;
-$value = $data->value;
+ $item_no = intval($data->item_number);
+$value = intval($data->value);
 $added_by = $data->added_by;
 $description = $data->description;
 $notes = $data->notes;
 
 // $tags = trim($data['tags']);
-  
-$query = 'SELECT * FROM items WHERE item_number="' . $item_no . '" ';
-$db->query($query, SQL_ALL);
+
+if (!is_int($item_no)) {
+  $err = 'That isnt a number.';
+}
 
 if ($item_no < 1) {
   $err = 'Bad item number.';
 }
 
-if (count($db->record) > 0) {
+$query = 'SELECT * FROM items WHERE item_number="' . $item_no . '" ';
+$result = $db->query($query);
+
+if (mysqli_num_rows($result) > 0) {
   $err = 'That item number already exists.';
 }
 
@@ -29,21 +33,16 @@ if (!$err) {
   $query .= 'notes="' . $notes . '", ';
   $query .= 'date_added = NOW() ';
   
-  $db->query($query, SQL_NONE);
-
-  // echo $query . "\n";
-  // echo $db->error . "\n";
-
-  if ($db->error) {
+  if($db->query($query)) {
+    // return the new data, as backbone will take the server response as authoritative
+    $query = 'SELECT * FROM items WHERE item_number="' . $item_no . '" ';
+    $freshResult = $db->query($query);
+    $resp = $freshResult->fetch_assoc();
+  } else {
     $err = 'A database error occured. Uh oh.';
     $err .= "\n\n";
     $err .= $query . "\n\n";
     $err .= $db->error;
-  } else {
-    // return the new data, as backbone will take the server response as authoritative
-    $query = 'SELECT * FROM items WHERE item_number="' . $item_no . '" ';
-    $db->query($query, SQL_ALL);
-    $resp = $db->record[0];
   }
 
 }

@@ -1,3 +1,26 @@
+// shared utility function for handling default Fetch's idiosyncratic top level resolution
+function handleResponse(response) {
+    return response.json()
+        .then((json) => {
+            if (!response.ok) {
+                const error = Object.assign({}, json, {
+                    status: response.status,
+                    statusText: response.statusText,
+                });
+
+                return Promise.reject(error);
+            }
+            return json;
+        });
+}
+
+// Default data object for a new Item
+WorkingDefaults = {
+    type: 'm',
+    include_in_lists: 'y'
+}
+
+
 ItemModel = {
     allRecords: {},
 
@@ -12,6 +35,34 @@ ItemModel = {
             });
     },
 
+    create: function(workingItem) {
+        itemJson = JSON.stringify(workingItem);
+        url = '/server/items/';
+        // url = '/server/items/ham';
+        return fetch(url, {method: 'POST', body: itemJson})
+            .then(handleResponse)
+            .then(function(data) {
+                // on success the PUT end point returns the item post change, so get that new shit into the records
+                // ItemModel.allRecords[data.item_id] = data;
+                ItemModel.save(data.item_id, data);
+            });
+
+    },
+
+    update: function(workingItem) {
+
+        itemJson = JSON.stringify(workingItem);
+        url = '/server/items/' + workingItem.item_id;
+        // url = '/server/items/ham';
+        return fetch(url, {method: 'PUT', body: itemJson})
+            .then(handleResponse)
+            .then(function(data) {
+                // on success the PUT end point returns the item post change, so get that new shit into the records
+                // ItemModel.allRecords[data.item_id] = data;
+                ItemModel.save(data.item_id, data);
+            });
+    },
+
     all: function() {
         return Object.values(ItemModel.allRecords);
     },
@@ -22,35 +73,9 @@ ItemModel = {
         return Object.assign({}, ItemModel.allRecords[id]);
     },
 
-    create: function(workingItem) {
-
-    },
-
-    update: function(workingItem) {
-
-        itemJson = JSON.stringify(workingItem);
-        // url = '/server/items/' + workingItem.item_id;
-        url = '/server/items/ham';
-        return fetch(url, {method: 'PUT', body: itemJson})
-            .then(function(response) {
-                if (!response.ok) {
-                    // we don't have access to the error message here, so we can't specify :\
-                    // It might be worthwhile to make a wrapper for fetch that rejects on 404s so you can get the body
-                    // but adding client-side validation might realistically cover all expected problems
-                    return Promise.reject('Something went wrong');
-                }
-                return response.json();
-            })
-            .then(function(data) {
-                // on success the PUT end point returns the item post change, so get that new shit into the records
-                ItemModel.allRecords[data.item_id] = data;
-            });
+    save: function(id, itemData) {
+        ItemModel.allRecords[id] = itemData;
     }
-}
-
-WorkingDefaults = {
-    type: 'm',
-    include_in_lists: 'y'
 }
 
 Vue.component('item', {
@@ -87,29 +112,40 @@ Vue.component('work-form', {
         workingItem: {}
     };},
     created: function() {
+        console.log('Target: ', this.target);
         if (this.target > 0) {
             this.workingItem = ItemModel.find(this.target);
         } else {
-            this.workingItem = WorkingDefaults;
+            // assign a copy, otherwise the defaults object will get changed live with the form
+            this.workingItem = Object.assign({}, WorkingDefaults);
         }
     },
     methods: {
         doASubmit: function() {
-            console.log(this.workingItem.item_id);
-            console.log('Oh yeah!', this.workingItem);
-
+        
             if (this.workingItem.item_id) {
                 // edit
 
                 ItemModel.update(this.workingItem).then(function() {
                     this.$emit('change-page', 'items');
                 }.bind(this))
-                .catch(function(error, other) {
-                    alert('Something really unexpected happened and your request may not have been saved. Sorry.');
+                .catch(function(error) {
+                    // TODO: maybe actually show them the error I GUESS
+                    console.log(error);
                 });
 
             } else {
                 // new item
+
+                // huh. this seems maybe almost exactly like the edit, should probably either
+                // consolidate or distinguish these
+                ItemModel.create(this.workingItem).then(function() {
+                    this.$emit('change-page', 'items');
+                }.bind(this))
+                .catch(function(error) {
+                    // TODO: maybe actually show them the error I GUESS
+                    console.log(error);
+                });
             }
 
         },
@@ -123,7 +159,7 @@ Vue.component('work-form', {
             <form class="pure-form pure-form-aligned">
                 <div class="pure-control-group">
                     <label for="item_no">Item #</label>
-                    <input type="text" id="item_no" placeholder="" style="width: 5em;"  v-model="workingItem.item_number" />
+                    <input type="text" id="item_no" placeholder="" style="width: 5em;"  v-model="workingItem.item_number" :disabled="target > 0" />
                 </div>
 
                 <div class="pure-control-group">
@@ -181,8 +217,10 @@ var vm = new Vue({
         changePage: function(page) {
             this.target = 0;
             this.current_page = page;
-            // if we're coming back from the edit/create for we need to refresh the local list
-            this.setData();
+            // if we're coming back from the edit/create page we need to refresh the local list
+            if (page == 'items') {
+                this.setData();
+            }
         },
         editItem: function(item_id) {
             this.changePage('work');

@@ -1,6 +1,7 @@
 #
 # This is a nginx config file intended for use in an ubuntu 20.04 dev environment.
 # It should replace the default config in /etc/nginx/sites-available
+# Obviously you would need to edit the "root" directive for your local file system decisions
 #
 server {
 	listen 80 default_server;
