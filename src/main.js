@@ -38,12 +38,10 @@ ItemModel = {
     create: function(workingItem) {
         itemJson = JSON.stringify(workingItem);
         url = '/server/items/';
-        // url = '/server/items/ham';
         return fetch(url, {method: 'POST', body: itemJson})
             .then(handleResponse)
             .then(function(data) {
-                // on success the PUT end point returns the item post change, so get that new shit into the records
-                // ItemModel.allRecords[data.item_id] = data;
+                // PUT/POST returns new/updated item in the body
                 ItemModel.save(data.item_id, data);
             });
 
@@ -53,12 +51,9 @@ ItemModel = {
 
         itemJson = JSON.stringify(workingItem);
         url = '/server/items/' + workingItem.item_id;
-        // url = '/server/items/ham';
         return fetch(url, {method: 'PUT', body: itemJson})
             .then(handleResponse)
             .then(function(data) {
-                // on success the PUT end point returns the item post change, so get that new shit into the records
-                // ItemModel.allRecords[data.item_id] = data;
                 ItemModel.save(data.item_id, data);
             });
     },
@@ -68,7 +63,7 @@ ItemModel = {
     },
 
     find: function(id) {
-        // by default we want to return a shallow copy so components (the edit form mainly) can't change the original
+        // by default we want to return a shallow copy so components (the edit form mainly) don't change the original
         // via form bindings
         return Object.assign({}, ItemModel.allRecords[id]);
     },
